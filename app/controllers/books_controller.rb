@@ -3,6 +3,7 @@ before_action :is_matching_login_user, only: [:edit]
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   def index
