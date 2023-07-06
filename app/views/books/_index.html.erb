@@ -19,7 +19,6 @@
         <td class="favorite-btn-<%= book.id.to_s %>"><%= render 'favorites/favorite', book: book %></td>
           <!--いいねボタンの部分テンプレートを書く-->
         <td>コメント件数:<%= book.book_comments.count %></td>
-
       </tr>
     <% end %>
   </tbody>
