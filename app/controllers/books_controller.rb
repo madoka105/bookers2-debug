@@ -2,8 +2,16 @@ class BooksController < ApplicationController
 before_action :is_matching_login_user, only: [:edit]
   def show
     @book = Book.find(params[:id])
+    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
+    
     @book_new = Book.new
     @book_comment = BookComment.new
+    @book_detail = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+      current_user.view_counts.create(book_id: @book_detail.id)
+    end
   end
 
   def index
